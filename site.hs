@@ -9,7 +9,7 @@ import           System.FilePath               (takeBaseName)
 
 --------------------------------------------------------------------------------
 main :: IO ()
-main = hakyll $ do
+main = hakyllWith ghConfig $ do
     match ("images/*" .||. "js/*") $ do
         route   idRoute
         compile copyFileCompiler
@@ -174,6 +174,11 @@ sortOnM :: (Monad m, Ord b) => (a -> m b) -> [a] -> m [a]
 sortOnM f xs = map fst . sortBy (comparing snd) . zip xs <$> mapM f xs
 
 --------------------------------------------------------------------------------
+
+ghConfig :: Configuration
+ghConfig = defaultConfiguration
+  { destinationDirectory = "docs"
+  }
 
 sidebarCtx :: Context String -> Context String
 sidebarCtx nodeCtx =
