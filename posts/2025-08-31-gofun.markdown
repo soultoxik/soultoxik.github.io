@@ -34,9 +34,9 @@ func ForAll[A any, F func(A)](a []A, f F) {
 
 ---
 
-```go
+
 While practicing Go, at some point I really wanted something like this:
-go
+```go
 
 func Fmap[A any, B any, AB func(A) B](a []A, f AB) []B {
 	b := make([]B, 0, len(a))

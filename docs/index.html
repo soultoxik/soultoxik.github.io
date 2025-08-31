@@ -149,31 +149,30 @@
 <span id="cb1-22"><a href="#cb1-22"></a>}</span></code></pre></div>
 <p>Это реализует распространенные операции функционального программирования, такие как <code>map</code> и <code>forEach</code>, с использованием дженериков в Go, что позволяет выполнять типобезопасные преобразования и итерации над слайсами. Вариант <code>FmapInto</code> особенно полезен для предварительно выделенных слайсов, чтобы избежать дополнительных аллокаций памяти</p>
 <hr />
-<div class="sourceCode" id="cb2"><pre class="sourceCode go"><code class="sourceCode go"><span id="cb2-1"><a href="#cb2-1"></a>While practicing Go, at some point I really wanted something like this:</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">go</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="kw">func</span> Fmap[A any, B any, AB <span class="kw">func</span>(A) B](a []A, f AB) []B {</span>
-<span id="cb2-5"><a href="#cb2-5"></a>	b := <span class="bu">make</span>([]B, <span class="dv">0</span>, <span class="bu">len</span>(a))</span>
-<span id="cb2-6"><a href="#cb2-6"></a>	<span class="kw">for</span> _, e := <span class="kw">range</span> a {</span>
-<span id="cb2-7"><a href="#cb2-7"></a>		b = <span class="bu">append</span>(b, f(e))</span>
-<span id="cb2-8"><a href="#cb2-8"></a>	}</span>
-<span id="cb2-9"><a href="#cb2-9"></a></span>
-<span id="cb2-10"><a href="#cb2-10"></a>	<span class="kw">return</span> b</span>
-<span id="cb2-11"><a href="#cb2-11"></a>}</span>
-<span id="cb2-12"><a href="#cb2-12"></a></span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="kw">func</span> FmapInto[A any, B any, AB <span class="kw">func</span>(A) B](a []A, f AB, b []B) []B {</span>
-<span id="cb2-14"><a href="#cb2-14"></a>	<span class="kw">for</span> i, e := <span class="kw">range</span> a {</span>
-<span id="cb2-15"><a href="#cb2-15"></a>		b[i] = f(e)</span>
-<span id="cb2-16"><a href="#cb2-16"></a>	}</span>
-<span id="cb2-17"><a href="#cb2-17"></a></span>
-<span id="cb2-18"><a href="#cb2-18"></a>	<span class="kw">return</span> b</span>
-<span id="cb2-19"><a href="#cb2-19"></a>}</span>
-<span id="cb2-20"><a href="#cb2-20"></a></span>
-<span id="cb2-21"><a href="#cb2-21"></a><span class="kw">func</span> ForAll[A any, F <span class="kw">func</span>(A)](a []A, f F) {</span>
-<span id="cb2-22"><a href="#cb2-22"></a>	<span class="kw">for</span> _, e := <span class="kw">range</span> a {</span>
-<span id="cb2-23"><a href="#cb2-23"></a>		f(e)</span>
-<span id="cb2-24"><a href="#cb2-24"></a>	}</span>
-<span id="cb2-25"><a href="#cb2-25"></a>}</span></code></pre></div>
+<p>While practicing Go, at some point I really wanted something like this:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode go"><code class="sourceCode go"><span id="cb2-1"><a href="#cb2-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">func</span> Fmap[A any, B any, AB <span class="kw">func</span>(A) B](a []A, f AB) []B {</span>
+<span id="cb2-3"><a href="#cb2-3"></a>	b := <span class="bu">make</span>([]B, <span class="dv">0</span>, <span class="bu">len</span>(a))</span>
+<span id="cb2-4"><a href="#cb2-4"></a>	<span class="kw">for</span> _, e := <span class="kw">range</span> a {</span>
+<span id="cb2-5"><a href="#cb2-5"></a>		b = <span class="bu">append</span>(b, f(e))</span>
+<span id="cb2-6"><a href="#cb2-6"></a>	}</span>
+<span id="cb2-7"><a href="#cb2-7"></a></span>
+<span id="cb2-8"><a href="#cb2-8"></a>	<span class="kw">return</span> b</span>
+<span id="cb2-9"><a href="#cb2-9"></a>}</span>
+<span id="cb2-10"><a href="#cb2-10"></a></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="kw">func</span> FmapInto[A any, B any, AB <span class="kw">func</span>(A) B](a []A, f AB, b []B) []B {</span>
+<span id="cb2-12"><a href="#cb2-12"></a>	<span class="kw">for</span> i, e := <span class="kw">range</span> a {</span>
+<span id="cb2-13"><a href="#cb2-13"></a>		b[i] = f(e)</span>
+<span id="cb2-14"><a href="#cb2-14"></a>	}</span>
+<span id="cb2-15"><a href="#cb2-15"></a></span>
+<span id="cb2-16"><a href="#cb2-16"></a>	<span class="kw">return</span> b</span>
+<span id="cb2-17"><a href="#cb2-17"></a>}</span>
+<span id="cb2-18"><a href="#cb2-18"></a></span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="kw">func</span> ForAll[A any, F <span class="kw">func</span>(A)](a []A, f F) {</span>
+<span id="cb2-20"><a href="#cb2-20"></a>	<span class="kw">for</span> _, e := <span class="kw">range</span> a {</span>
+<span id="cb2-21"><a href="#cb2-21"></a>		f(e)</span>
+<span id="cb2-22"><a href="#cb2-22"></a>	}</span>
+<span id="cb2-23"><a href="#cb2-23"></a>}</span></code></pre></div>
 <p>This implements common functional programming operations like <code>map</code> and <code>forEach</code> using Go’s generics, allowing for type-safe transformations and iterations over slices. The <code>FmapInto</code> variant is particularly useful for pre-allocated slices to avoid extra allocations.</p>
   </div>
   
