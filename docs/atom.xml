@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>lanyon-hakyll: Lanyon Theme on Hakyll</title>
+    <link href="https://github.com/hahey/lanyon-hakyll/atom.xml" rel="self" />
+    <link href="https://github.com/hahey/lanyon-hakyll" />
+    <id>https://github.com/hahey/lanyon-hakyll/atom.xml</id>
+    <author>
+        <name>Heuna Kim</name>
+        <email>ai@heuna-kim.net</email>
+    </author>
+    <updated>2025-04-26T00:00:00Z</updated>
+    <entry>
+    <title>Quine Relay</title>
+    <link href="https://github.com/hahey/lanyon-hakyll/posts/2025-04-26-relay.html" />
+    <id>https://github.com/hahey/lanyon-hakyll/posts/2025-04-26-relay.html</id>
+    <published>2025-04-26T00:00:00Z</published>
+    <updated>2025-04-26T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p><a href="https://github.com/mame/quine-relay">https://github.com/mame/quine-relay</a></p>]]></summary>
+</entry>
+<entry>
+    <title>Akka</title>
+    <link href="https://github.com/hahey/lanyon-hakyll/posts/2024-12-22-akka.html" />
+    <id>https://github.com/hahey/lanyon-hakyll/posts/2024-12-22-akka.html</id>
+    <published>2024-12-22T00:00:00Z</published>
+    <updated>2024-12-22T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>Один из авторов концепции ООП, Алан Кей, предлагал подход “есть объекты, внутри все синхронно, общаются через сообщения”. Эволюция пошла по несколько другому пути, что привело к локальному буму ООП языков (жава, кресты и иже с ним). Но изначальная концепция как-то забылась, и воскресла в виде акторной модели. Один из амбассадоров энтерпрайз акторов – <code>akka</code> (фреймворк для жавы/скалы). Недавно пошел собирать пет на акке, и внезапно <a href="https://doc.akka.io/libraries/akka-core/current/general/configuration.html#:~:text=License%20key,-Akka%20requires%20a&amp;text=Free%20keys%20can%20be%20obtained,a%20key%20isn&#39;t%20configured">оказалось…</a>. Тлдр: нужно получить ключ, иначе акторный контекст в какой-то момент помрет сам по себе (и соответственно все развалится). Невероятные технологии 21го века, спасибо маркетологам от lightbend.</p>
+<hr />
+<p>One of the founders of the OOP concept, Alan Kay, proposed an approach: “there are objects, everything inside is synchronous, and they communicate via messages.” Evolution took a slightly different path, leading to a local boom in OOP languages (Java, C++, and the like). But the original concept was somewhat forgotten and later revived in the form of the actor model.</p>
+<p>One of the enterprise ambassadors of actors is <code>Akka</code> (a framework for Java/Scala). Recently, I tried to set up a pet project with Akka and <a href="https://doc.akka.io/libraries/akka-core/current/general/configuration.html#:~:text=License%20key,-Akka%20requires%20a&amp;text=Free%20keys%20can%20be%20obtained,a%20key%20isn&#39;t%20configured">suddenly discovered…</a>.</p>
+<p>TL;DR: You need to obtain a license key, otherwise the actor context will eventually shut down on its own (and everything will break). Incredible technologies of the 21st century, thanks to the marketers at Lightbend.</p>]]></summary>
+</entry>
+<entry>
+    <title>grpc + grpc-web</title>
+    <link href="https://github.com/hahey/lanyon-hakyll/posts/2024-04-27-grpc-web.html" />
+    <id>https://github.com/hahey/lanyon-hakyll/posts/2024-04-27-grpc-web.html</id>
+    <published>2024-04-27T00:00:00Z</published>
+    <updated>2024-04-27T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>У <code>grpc-web</code> (https://github.com/grpc/grpc-web) есть ограничение по коннекту: <code>gRPC-web clients connect to gRPC services via a special proxy; by default, gRPC-web uses Envoy.</code> Из интересного – есть <a href="https://docs.rs/tonic-web/latest/tonic_web/"><code>tonic</code> + <code>tonic-web</code></a> который через <code>tower</code> может давать серверный <code>grpc</code>, к которому могут коннектится как обычные, так и <code>grpc-web</code> клиенты. Пользуйтесь!</p>
+<hr />
+<p>The <code>grpc-web</code> library (https://github.com/grpc/grpc-web) has a connection limitation:<br />
+<code>gRPC-web clients connect to gRPC services via a special proxy; by default, gRPC-web uses Envoy.</code></p>
+<p>Interestingly, there is <a href="https://docs.rs/tonic-web/latest/tonic_web/"><code>tonic</code> + <code>tonic-web</code></a>, which via <code>tower</code> can provide a server-side <code>gRPC</code> implementation accessible by both regular and <code>grpc-web</code> clients.<br />
+Give it a try!</p>]]></summary>
+</entry>
+<entry>
+    <title>Carbon</title>
+    <link href="https://github.com/hahey/lanyon-hakyll/posts/2022-07-20-carbon.html" />
+    <id>https://github.com/hahey/lanyon-hakyll/posts/2022-07-20-carbon.html</id>
+    <published>2022-07-20T00:00:00Z</published>
+    <updated>2022-07-20T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p><a href="https://github.com/carbon-language/carbon-lang">https://github.com/carbon-language/carbon-lang</a></p>
+<p><a href="https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/interoperability/philosophy_and_goals.md">https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/interoperability/philosophy_and_goals.md</a></p>
+<p>Ребята замахиваются на совместимость с c++ и при этом на нормальный язык, выглядит очень интересно!</p>
+<hr />
+<p>That’s an exciting find!</p>
+<p>The Carbon Language project is indeed aiming for something ambitious: creating a modern programming language that maintains <strong>bidirectional interoperability with C++</strong>, while addressing many of C++’s complexities and historical baggage.</p>
+<p>From the philosophy and goals document, it’s clear the team is focused on: - <strong>Seamless migration</strong>: Code should be able to call between C++ and Carbon without significant overhead or complexity. - <strong>Modern language features</strong>: Carbon aims to include memory safety, generics, and better tooling. - <strong>Gradual adoption</strong>: The goal is to let developers migrate incrementally rather than requiring a full rewrite.</p>]]></summary>
+</entry>
+<entry>
+    <title>NDK + C++20</title>
+    <link href="https://github.com/hahey/lanyon-hakyll/posts/2022-06-26-ndk20.html" />
+    <id>https://github.com/hahey/lanyon-hakyll/posts/2022-06-26-ndk20.html</id>
+    <published>2022-06-26T00:00:00Z</published>
+    <updated>2022-06-26T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>Как-то очень тихо это случилось Как минимум на ndkVersion “24.0.8215888” теперь есть c++20! upd: * в каком-то состоянии есть концепты * в стандартную библиотеку не завезли <code>ranges</code>, но завезли <code>coroutines</code></p>
+<hr />
+<p>It happened quite quietly.<br />
+At least in ndkVersion “24.0.8215888”, C++20 is now available!<br />
+Update:<br />
+* Concepts are partially implemented<br />
+* The standard library doesn’t include <code>ranges</code>, but <code>coroutines</code> are shipped</p>]]></summary>
+</entry>
+<entry>
+    <title>Little lambda machine</title>
+    <link href="https://github.com/hahey/lanyon-hakyll/posts/2022-04-12-lambda.html" />
+    <id>https://github.com/hahey/lanyon-hakyll/posts/2022-04-12-lambda.html</id>
+    <published>2022-04-12T00:00:00Z</published>
+    <updated>2022-04-12T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>Absolutely perfect https://justine.lol/lambda/</p>]]></summary>
+</entry>
+<entry>
+    <title>Church's numbers</title>
+    <link href="https://github.com/hahey/lanyon-hakyll/posts/2022-02-21-church.html" />
+    <id>https://github.com/hahey/lanyon-hakyll/posts/2022-02-21-church.html</id>
+    <published>2022-02-21T00:00:00Z</published>
+    <updated>2022-02-21T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>По просьбам подписчиков — небольшой этюд по числам Чёрча (https://en.wikipedia.org/wiki/Church_encoding) tl:dr — выражаем натуральные+ числа через типы, причём всё, что мы можем с ними делать — применять с некоторым символом (функцией).</p>
+<p>То есть такое число — это глубина композиции некой функции. Пример без композиции для простоты. Собственно применение такой композиции с тз лямбда исчислений это b-редукция, и это всё что мы можем над этим типом делать. (опуская другие виды редукций)</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a>    <span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="kw">using</span> <span class="kw">namespace</span> std;</span>
+<span id="cb1-3"><a href="#cb1-3"></a>     </span>
+<span id="cb1-4"><a href="#cb1-4"></a>     </span>
+<span id="cb1-5"><a href="#cb1-5"></a>    <span class="kw">struct</span> Zero { };</span>
+<span id="cb1-6"><a href="#cb1-6"></a>     </span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="kw">template</span>&lt;<span class="kw">typename</span> Church&gt;</span>
+<span id="cb1-8"><a href="#cb1-8"></a>    <span class="kw">struct</span> Succ { };</span>
+<span id="cb1-9"><a href="#cb1-9"></a>     </span>
+<span id="cb1-10"><a href="#cb1-10"></a>     </span>
+<span id="cb1-11"><a href="#cb1-11"></a>    <span class="kw">template</span>&lt;<span class="kw">typename</span> Church, <span class="kw">typename</span> Fn&gt;</span>
+<span id="cb1-12"><a href="#cb1-12"></a>    <span class="kw">struct</span> BReduction;</span>
+<span id="cb1-13"><a href="#cb1-13"></a>     </span>
+<span id="cb1-14"><a href="#cb1-14"></a>    <span class="kw">template</span>&lt;<span class="kw">typename</span> Fn&gt;</span>
+<span id="cb1-15"><a href="#cb1-15"></a>    <span class="kw">struct</span> BReduction&lt;Zero, Fn&gt; {</span>
+<span id="cb1-16"><a href="#cb1-16"></a>      <span class="dt">void</span> apply(Fn _) { }</span>
+<span id="cb1-17"><a href="#cb1-17"></a>    };</span>
+<span id="cb1-18"><a href="#cb1-18"></a>     </span>
+<span id="cb1-19"><a href="#cb1-19"></a>    <span class="kw">template</span>&lt;<span class="kw">typename</span> Church, <span class="kw">typename</span> Fn&gt;</span>
+<span id="cb1-20"><a href="#cb1-20"></a>    <span class="kw">struct</span> BReduction&lt;Succ&lt;Church&gt;, Fn&gt; {</span>
+<span id="cb1-21"><a href="#cb1-21"></a>      <span class="dt">void</span> apply(Fn fn) {</span>
+<span id="cb1-22"><a href="#cb1-22"></a>        fn();</span>
+<span id="cb1-23"><a href="#cb1-23"></a>        BReduction&lt;Church, Fn&gt;{}.apply(fn);</span>
+<span id="cb1-24"><a href="#cb1-24"></a>      }</span>
+<span id="cb1-25"><a href="#cb1-25"></a>    };</span>
+<span id="cb1-26"><a href="#cb1-26"></a>     </span>
+<span id="cb1-27"><a href="#cb1-27"></a>    <span class="kw">template</span>&lt;<span class="kw">typename</span> Church, <span class="kw">typename</span> Fn&gt;</span>
+<span id="cb1-28"><a href="#cb1-28"></a>    <span class="kw">inline</span> <span class="dt">void</span> apply(Fn fn) {</span>
+<span id="cb1-29"><a href="#cb1-29"></a>      BReduction&lt;Church, Fn&gt;{}.apply(fn);</span>
+<span id="cb1-30"><a href="#cb1-30"></a>    }</span>
+<span id="cb1-31"><a href="#cb1-31"></a>     </span>
+<span id="cb1-32"><a href="#cb1-32"></a>     </span>
+<span id="cb1-33"><a href="#cb1-33"></a>     </span>
+<span id="cb1-34"><a href="#cb1-34"></a>    <span class="dt">int</span> main() {</span>
+<span id="cb1-35"><a href="#cb1-35"></a>     </span>
+<span id="cb1-36"><a href="#cb1-36"></a>    	<span class="kw">using</span> ZeroNum = Zero;</span>
+<span id="cb1-37"><a href="#cb1-37"></a>    	<span class="kw">using</span> OneNum = Succ&lt;Zero&gt;;</span>
+<span id="cb1-38"><a href="#cb1-38"></a>    	<span class="kw">using</span> BigNum = Succ&lt;Succ&lt;Succ&lt;Zero&gt;&gt;&gt;;</span>
+<span id="cb1-39"><a href="#cb1-39"></a>     </span>
+<span id="cb1-40"><a href="#cb1-40"></a>    	<span class="kw">auto</span> action = []() {  <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;fn&quot;</span> &lt;&lt; <span class="bu">std::</span>endl; };</span>
+<span id="cb1-41"><a href="#cb1-41"></a>    	apply&lt;BigNum&gt;(action);</span>
+<span id="cb1-42"><a href="#cb1-42"></a>     </span>
+<span id="cb1-43"><a href="#cb1-43"></a>     </span>
+<span id="cb1-44"><a href="#cb1-44"></a>    	<span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb1-45"><a href="#cb1-45"></a>    }</span></code></pre></div>
+<p>https://ideone.com/G4X0Kh</p>
+<hr />
+<p>At the request of subscribers — a short study on Church numerals (https://en.wikipedia.org/wiki/Church_encoding)<br />
+TL;DR: We express natural numbers (including zero) through types, where the only thing we can do with them is apply them to a certain symbol (function).</p>
+<p>That is, such a number is the depth of composition of a certain function. Here is an example without composition for simplicity.<br />
+The application of such composition in terms of lambda calculus is beta-reduction, and that’s all we can do with this type (omitting other types of reductions).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1"></a>    <span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="kw">using</span> <span class="kw">namespace</span> std;</span>
+<span id="cb2-3"><a href="#cb2-3"></a>     </span>
+<span id="cb2-4"><a href="#cb2-4"></a>     </span>
+<span id="cb2-5"><a href="#cb2-5"></a>    <span class="kw">struct</span> Zero { };</span>
+<span id="cb2-6"><a href="#cb2-6"></a>     </span>
+<span id="cb2-7"><a href="#cb2-7"></a>    <span class="kw">template</span>&lt;<span class="kw">typename</span> Church&gt;</span>
+<span id="cb2-8"><a href="#cb2-8"></a>    <span class="kw">struct</span> Succ { };</span>
+<span id="cb2-9"><a href="#cb2-9"></a>     </span>
+<span id="cb2-10"><a href="#cb2-10"></a>     </span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="kw">template</span>&lt;<span class="kw">typename</span> Church, <span class="kw">typename</span> Fn&gt;</span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="kw">struct</span> BReduction;</span>
+<span id="cb2-13"><a href="#cb2-13"></a>     </span>
+<span id="cb2-14"><a href="#cb2-14"></a>    <span class="kw">template</span>&lt;<span class="kw">typename</span> Fn&gt;</span>
+<span id="cb2-15"><a href="#cb2-15"></a>    <span class="kw">struct</span> BReduction&lt;Zero, Fn&gt; {</span>
+<span id="cb2-16"><a href="#cb2-16"></a>      <span class="dt">void</span> apply(Fn _) { }</span>
+<span id="cb2-17"><a href="#cb2-17"></a>    };</span>
+<span id="cb2-18"><a href="#cb2-18"></a>     </span>
+<span id="cb2-19"><a href="#cb2-19"></a>    <span class="kw">template</span>&lt;<span class="kw">typename</span> Church, <span class="kw">typename</span> Fn&gt;</span>
+<span id="cb2-20"><a href="#cb2-20"></a>    <span class="kw">struct</span> BReduction&lt;Succ&lt;Church&gt;, Fn&gt; {</span>
+<span id="cb2-21"><a href="#cb2-21"></a>      <span class="dt">void</span> apply(Fn fn) {</span>
+<span id="cb2-22"><a href="#cb2-22"></a>        fn();</span>
+<span id="cb2-23"><a href="#cb2-23"></a>        BReduction&lt;Church, Fn&gt;{}.apply(fn);</span>
+<span id="cb2-24"><a href="#cb2-24"></a>      }</span>
+<span id="cb2-25"><a href="#cb2-25"></a>    };</span>
+<span id="cb2-26"><a href="#cb2-26"></a>     </span>
+<span id="cb2-27"><a href="#cb2-27"></a>    <span class="kw">template</span>&lt;<span class="kw">typename</span> Church, <span class="kw">typename</span> Fn&gt;</span>
+<span id="cb2-28"><a href="#cb2-28"></a>    <span class="kw">inline</span> <span class="dt">void</span> apply(Fn fn) {</span>
+<span id="cb2-29"><a href="#cb2-29"></a>      BReduction&lt;Church, Fn&gt;{}.apply(fn);</span>
+<span id="cb2-30"><a href="#cb2-30"></a>    }</span>
+<span id="cb2-31"><a href="#cb2-31"></a>     </span>
+<span id="cb2-32"><a href="#cb2-32"></a>     </span>
+<span id="cb2-33"><a href="#cb2-33"></a>     </span>
+<span id="cb2-34"><a href="#cb2-34"></a>    <span class="dt">int</span> main() {</span>
+<span id="cb2-35"><a href="#cb2-35"></a>     </span>
+<span id="cb2-36"><a href="#cb2-36"></a>    	<span class="kw">using</span> ZeroNum = Zero;</span>
+<span id="cb2-37"><a href="#cb2-37"></a>    	<span class="kw">using</span> OneNum = Succ&lt;Zero&gt;;</span>
+<span id="cb2-38"><a href="#cb2-38"></a>    	<span class="kw">using</span> BigNum = Succ&lt;Succ&lt;Succ&lt;Zero&gt;&gt;&gt;;</span>
+<span id="cb2-39"><a href="#cb2-39"></a>     </span>
+<span id="cb2-40"><a href="#cb2-40"></a>    	<span class="kw">auto</span> action = []() {  <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;fn&quot;</span> &lt;&lt; <span class="bu">std::</span>endl; };</span>
+<span id="cb2-41"><a href="#cb2-41"></a>    	apply&lt;BigNum&gt;(action);</span>
+<span id="cb2-42"><a href="#cb2-42"></a>     </span>
+<span id="cb2-43"><a href="#cb2-43"></a>     </span>
+<span id="cb2-44"><a href="#cb2-44"></a>    	<span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb2-45"><a href="#cb2-45"></a>    }</span></code></pre></div>
+<p>https://ideone.com/G4X0Kh</p>]]></summary>
+</entry>
+<entry>
+    <title>Anbox</title>
+    <link href="https://github.com/hahey/lanyon-hakyll/posts/2022-02-21-anbox.html" />
+    <id>https://github.com/hahey/lanyon-hakyll/posts/2022-02-21-anbox.html</id>
+    <published>2022-02-21T00:00:00Z</published>
+    <updated>2022-02-21T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>Потестил https://anbox.io/ пока на linux машине. OpenGL2.0 + libc если последний только на edge сборке. Не найс.</p>
+<hr />
+<p>I tested https://anbox.io/ on a Linux machine for now.<br />
+OpenGL 2.0 + libc, and the latter is only available in edge builds. Not great.</p>]]></summary>
+</entry>
+<entry>
+    <title>stampede</title>
+    <link href="https://github.com/hahey/lanyon-hakyll/posts/2021-12-11-stampede.html" />
+    <id>https://github.com/hahey/lanyon-hakyll/posts/2021-12-11-stampede.html</id>
+    <published>2021-12-11T00:00:00Z</published>
+    <updated>2021-12-11T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>Неделю назад состоялся релиз https://github.com/prisma-ai/stampede !</p>
+<p>tldr: библиотека для организации множества вычислений на cpp в compile-time. Посмотреть доклад по этому поводу можно на https://yatalks.yandex.ru/ , секция Mobile, “1000 и 1 операция”</p>
+<p>Так же завтра буду выступать на эту же тему на https://devscamp.ru/ в 11:20, приходите :)</p>
+<hr />
+<p>A week ago, the release of https://github.com/prisma-ai/stampede took place!</p>
+<p>TL;DR: A library for organizing multiple computations in C++ at compile-time.<br />
+You can watch a talk on this topic at https://yatalks.yandex.ru/, Mobile section, “1000 and 1 Operations”.</p>
+<p>Also, I’ll be speaking on the same topic tomorrow at https://devscamp.ru/ at 11:20 — come join! :)</p>]]></summary>
+</entry>
+<entry>
+    <title>Tuple</title>
+    <link href="https://github.com/hahey/lanyon-hakyll/posts/2021-11-19-tuple-indexed.html" />
+    <id>https://github.com/hahey/lanyon-hakyll/posts/2021-11-19-tuple-indexed.html</id>
+    <published>2021-11-19T00:00:00Z</published>
+    <updated>2021-11-19T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>Когда хочется проехаться по содержимому тюпла с индексом</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a>    <span class="kw">template</span>&lt;<span class="bu">std::</span>size_t I = <span class="dv">0</span>, <span class="kw">typename</span> ...Ts&gt;</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="kw">inline</span> <span class="kw">typename</span> <span class="bu">std::</span>enable_if&lt;I == <span class="kw">sizeof</span>...(Ts), <span class="dt">void</span>&gt;::type</span>
+<span id="cb1-3"><a href="#cb1-3"></a>    something(<span class="bu">std::</span>tuple&lt;Ts...&gt;) { }</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a>    <span class="kw">template</span>&lt;<span class="bu">std::</span>size_t I = <span class="dv">0</span>, <span class="kw">typename</span> ...Ts&gt;</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="kw">inline</span> <span class="kw">typename</span> <span class="bu">std::</span>enable_if&lt;I &lt; <span class="kw">sizeof</span>...(Ts), <span class="dt">void</span>&gt;::type</span>
+<span id="cb1-7"><a href="#cb1-7"></a>    something(<span class="bu">std::</span>tuple&lt;Ts...&gt; ts) {</span>
+<span id="cb1-8"><a href="#cb1-8"></a>        doSomething(<span class="bu">std::</span>get&lt;I&gt;(ts));</span>
+<span id="cb1-9"><a href="#cb1-9"></a>        something&lt;I + <span class="dv">1</span>&gt;(ts);</span>
+<span id="cb1-10"><a href="#cb1-10"></a>    }</span></code></pre></div>
+<p><a href="https://ideone.com/LVdMnx">https://ideone.com/LVdMnx</a></p>
+<hr />
+<p>When you need to iterate over the contents of a tuple with an index:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1"></a>    <span class="kw">template</span>&lt;<span class="bu">std::</span>size_t I = <span class="dv">0</span>, <span class="kw">typename</span> ...Ts&gt;</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="kw">inline</span> <span class="kw">typename</span> <span class="bu">std::</span>enable_if&lt;I == <span class="kw">sizeof</span>...(Ts), <span class="dt">void</span>&gt;::type</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    something(<span class="bu">std::</span>tuple&lt;Ts...&gt;) { }</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a>    <span class="kw">template</span>&lt;<span class="bu">std::</span>size_t I = <span class="dv">0</span>, <span class="kw">typename</span> ...Ts&gt;</span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="kw">inline</span> <span class="kw">typename</span> <span class="bu">std::</span>enable_if&lt;I &lt; <span class="kw">sizeof</span>...(Ts), <span class="dt">void</span>&gt;::type</span>
+<span id="cb2-7"><a href="#cb2-7"></a>    something(<span class="bu">std::</span>tuple&lt;Ts...&gt; ts) {</span>
+<span id="cb2-8"><a href="#cb2-8"></a>        doSomething(<span class="bu">std::</span>get&lt;I&gt;(ts));</span>
+<span id="cb2-9"><a href="#cb2-9"></a>        something&lt;I + <span class="dv">1</span>&gt;(ts);</span>
+<span id="cb2-10"><a href="#cb2-10"></a>    }</span></code></pre></div>
+<p><a href="https://ideone.com/LVdMnx">https://ideone.com/LVdMnx</a></p>]]></summary>
+</entry>
+
+</feed>
