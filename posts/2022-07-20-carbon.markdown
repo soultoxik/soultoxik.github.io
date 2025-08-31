@@ -1,0 +1,23 @@
+---
+title: Carbon
+tags: cpp, crazy
+---
+
+[https://github.com/carbon-language/carbon-lang](https://github.com/carbon-language/carbon-lang)
+
+
+[https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/interoperability/philosophy_and_goals.md](https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/interoperability/philosophy_and_goals.md)
+
+
+Ребята замахиваются на совместимость с c++ и при этом на нормальный язык, выглядит очень интересно!
+
+---
+
+That's an exciting find! 
+
+The Carbon Language project is indeed aiming for something ambitious: creating a modern programming language that maintains **bidirectional interoperability with C++**, while addressing many of C++'s complexities and historical baggage. 
+
+From the philosophy and goals document, it's clear the team is focused on:
+- **Seamless migration**: Code should be able to call between C++ and Carbon without significant overhead or complexity.
+- **Modern language features**: Carbon aims to include memory safety, generics, and better tooling.
+- **Gradual adoption**: The goal is to let developers migrate incrementally rather than requiring a full rewrite.

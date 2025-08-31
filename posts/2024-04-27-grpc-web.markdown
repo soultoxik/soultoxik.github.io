@@ -1,0 +1,18 @@
+---
+title: grpc + grpc-web
+tags: rust, crazy
+---
+
+У `grpc-web` (https://github.com/grpc/grpc-web) есть ограничение по коннекту:
+`gRPC-web clients connect to gRPC services via a special proxy; by default, gRPC-web uses Envoy.`
+Из интересного -- есть [`tonic` + `tonic-web`](https://docs.rs/tonic-web/latest/tonic_web/) который через `tower` может давать серверный `grpc`, к которому могут коннектится как обычные, так и `grpc-web` клиенты.
+Пользуйтесь!
+
+---
+
+
+The `grpc-web` library (https://github.com/grpc/grpc-web) has a connection limitation:  
+`gRPC-web clients connect to gRPC services via a special proxy; by default, gRPC-web uses Envoy.`  
+
+Interestingly, there is [`tonic` + `tonic-web`](https://docs.rs/tonic-web/latest/tonic_web/), which via `tower` can provide a server-side `gRPC` implementation accessible by both regular and `grpc-web` clients.  
+Give it a try!

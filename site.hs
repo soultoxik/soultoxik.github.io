@@ -50,9 +50,9 @@ main = hakyll $ do
         route $ setExtension "html"
         compile $ do
             posts <- loadAll ("posts/*" .&&. hasVersion "meta")
-            let taggedPostCtx = (tagsField "tags" tags) `mappend`
+            let taggedPostCtx = tagsField "tags" tags `mappend`
                                 postCtx `mappend`
-                                (relatedPostsCtx posts 3)
+                                relatedPostsCtx posts 3
 
             pandocCompiler
                 >>= saveSnapshot "content"
@@ -111,7 +111,7 @@ postsGrouper :: MonadMetadata m => [Identifier] -> m [[Identifier]]
 postsGrouper = liftM (paginateEvery 3) . sortRecentFirst
 
 postsPageId :: PageNumber -> Identifier
-postsPageId n = fromFilePath $ if (n == 1) then "index.html" else show n ++ "/index.html"
+postsPageId n = fromFilePath $ if n == 1 then "index.html" else show n ++ "/index.html"
 
 --------------------------------------------------------------------------------
 
@@ -129,12 +129,13 @@ feedConfig = FeedConfiguration
 siteCtx :: Context String
 siteCtx =
     baseCtx `mappend`
-    constField "site_description" "Lanyon Theme on Hakyll" `mappend`
+    constField "site_description" "soultoxik-web" `mappend`
+    constField "based on with MIT" "" `mappend`
     constField "site-url" "https://github.com/hahey/lanyon-hakyll" `mappend`
-    constField "tagline" "A Fork of Lanyon based on Poole" `mappend`
-    constField "site-title" "lanyon-hakyll" `mappend`
-    constField "copy-year" "2020" `mappend`
-    constField "github-repo" "https://github.com/hahey/lanyon-hakyll" `mappend`
+    constField "tagline" "" `mappend`
+    constField "site-title" "soultoxik-web" `mappend`
+    constField "copy-year" "2025" `mappend`
+    constField "github-repo" "https://github.com/soultoxik/soultoxik.github.io" `mappend` 
     defaultContext
 
 baseCtx =
@@ -157,14 +158,14 @@ relatedPostsCtx
   :: [Item String]  -> Int  -> Context String
 relatedPostsCtx posts n = listFieldWith "related_posts" postCtx selectPosts
   where
-    rateItem ts i = length . filter (`elem` ts) <$> (getTags $ itemIdentifier i)
+    rateItem ts i = length . filter (`elem` ts) <$> getTags (itemIdentifier i)
     selectPosts s = do
       postTags <- getTags $ itemIdentifier s
       let trimmedItems = filter (not . matchPath s) posts
       take n . reverse <$> sortOnM (rateItem postTags) trimmedItems
 
 matchPath :: Item String -> Item String -> Bool
-matchPath x y = eqOn (toFilePath . itemIdentifier) x y
+matchPath = eqOn (toFilePath . itemIdentifier)
 
 eqOn :: Eq b => (a -> b) -> a -> a -> Bool
 eqOn f x y = f x == f y

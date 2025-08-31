@@ -1,0 +1,20 @@
+---
+title: stampede
+tags: cpp, crazy
+---
+
+Неделю назад состоялся релиз https://github.com/prisma-ai/stampede !
+
+tldr: библиотека для организации множества вычислений на cpp в compile-time.
+Посмотреть доклад по этому поводу можно на https://yatalks.yandex.ru/ , секция Mobile, "1000 и 1 операция"
+
+Так же завтра буду выступать на эту же тему на https://devscamp.ru/ в 11:20, приходите :)
+
+---
+
+A week ago, the release of https://github.com/prisma-ai/stampede took place!
+
+TL;DR: A library for organizing multiple computations in C++ at compile-time.  
+You can watch a talk on this topic at https://yatalks.yandex.ru/, Mobile section, "1000 and 1 Operations".  
+
+Also, I’ll be speaking on the same topic tomorrow at https://devscamp.ru/ at 11:20 — come join! :)

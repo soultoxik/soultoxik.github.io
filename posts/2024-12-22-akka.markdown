@@ -1,0 +1,18 @@
+---
+title: Akka
+tags: crazy
+---
+
+
+Один из авторов концепции ООП, Алан Кей, предлагал подход "есть объекты, внутри все синхронно, общаются через сообщения". Эволюция пошла по несколько другому пути, что привело к локальному буму ООП языков (жава, кресты и иже с ним). Но изначальная концепция как-то забылась, и воскресла в виде акторной модели. 
+Один из амбассадоров энтерпрайз акторов -- `akka` (фреймворк для жавы/скалы). Недавно пошел собирать пет на акке, и внезапно [оказалось...](
+https://doc.akka.io/libraries/akka-core/current/general/configuration.html#:~:text=License%20key,-Akka%20requires%20a&text=Free%20keys%20can%20be%20obtained,a%20key%20isn't%20configured).
+Тлдр: нужно получить ключ, иначе акторный контекст в какой-то момент помрет сам по себе (и соответственно все развалится). Невероятные технологии 21го века, спасибо маркетологам от lightbend.
+
+---
+
+One of the founders of the OOP concept, Alan Kay, proposed an approach: "there are objects, everything inside is synchronous, and they communicate via messages." Evolution took a slightly different path, leading to a local boom in OOP languages (Java, C++, and the like). But the original concept was somewhat forgotten and later revived in the form of the actor model.  
+
+One of the enterprise ambassadors of actors is `Akka` (a framework for Java/Scala). Recently, I tried to set up a pet project with Akka and [suddenly discovered...](https://doc.akka.io/libraries/akka-core/current/general/configuration.html#:~:text=License%20key,-Akka%20requires%20a&text=Free%20keys%20can%20be%20obtained,a%20key%20isn't%20configured).  
+
+TL;DR: You need to obtain a license key, otherwise the actor context will eventually shut down on its own (and everything will break). Incredible technologies of the 21st century, thanks to the marketers at Lightbend.  

@@ -1,0 +1,6 @@
+---
+title: Quine Relay
+tags: crazy
+---
+
+[https://github.com/mame/quine-relay](https://github.com/mame/quine-relay)

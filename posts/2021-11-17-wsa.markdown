@@ -1,0 +1,16 @@
+---
+title: WSA
+tags: Android
+---
+
+Потестил доступную версию WSA (Windows Subsystem for Android, накаченная через msixbundle)
+* среди доступных ABI почти все классические кроме mips (x86-64, x86, arm7/8)
+* OpenGL ES 3.0 (выше нет)
+* из забавного — при сайдлоадинге apk создаются ярлыки на винде
+
+---
+
+I tested the available version of WSA (Windows Subsystem for Android, installed via msixbundle).  
+* Among the available ABIs, almost all classic ones are supported except MIPS (x86-64, x86, arm7/8).  
+* OpenGL ES 3.0 (no higher versions).  
+* Interestingly — when side-loading APKs, shortcuts are created on Windows.  

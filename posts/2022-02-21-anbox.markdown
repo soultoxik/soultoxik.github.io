@@ -1,0 +1,12 @@
+---
+title: Anbox
+tags: android
+---
+
+Потестил https://anbox.io/ пока на linux машине.
+OpenGL2.0 + libc если последний только на edge сборке. Не найс.
+
+---
+
+I tested https://anbox.io/ on a Linux machine for now.  
+OpenGL 2.0 + libc, and the latter is only available in edge builds. Not great.

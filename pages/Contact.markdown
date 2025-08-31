@@ -2,5 +2,10 @@
 title: Contact
 ---
 
-I live in a small hut in the mountains of Kumano Kodō on Kii Hantō and would not
-like to be contacted.
+email: cuerta.espada@gmail.com
+
+tg: @soultoxik
+
+linkedin: https://www.linkedin.com/in/maximskorokhodov
+
+hh: https://hh.ru/resume/ef2fcd3bff0cbc15cc0039ed1f443263434848

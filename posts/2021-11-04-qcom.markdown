@@ -1,0 +1,14 @@
+---
+title: qcom ondevice inference 
+tags: cpp, crazy
+---
+
+Кажется Qualcomm дропнула поддержку программируемого DSP чего-либо выше 855. В sdk / веб доках о них ни слова, все форумы завалены вопросами на эту тему :) 
+
+В принципе некоторые свёрточные сети и так не показывали чудеса перформанса на DSP, то есть OpenCL бекенд всё ещё скорее всего best in class, но затея с AIP (когда части сетки выполняются на CPU/GPU/DSP в зависимости от типа слоёв) выглядела богато.
+
+---
+
+It seems Qualcomm has dropped support for the programmable DSP in anything above the 855. There's not a word about it in the SDK or web documentation, and all the forums are flooded with questions on this topic :)
+
+In principle, some convolutional networks didn't show performance miracles on the DSP anyway, meaning the OpenCL backend is still most likely best in class. But the idea behind AIP (where parts of the graph are executed on the CPU/GPU/DSP depending on the layer types) sounded rich/impressive.

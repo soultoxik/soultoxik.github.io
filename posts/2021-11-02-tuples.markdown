@@ -1,0 +1,168 @@
+---
+title: Tuples
+tags: cpp, crazy
+---
+
+
+Пусть есть std::tuple на разных классов, некоторые из которых шейрят некий статический интерфейс (пусть это будет поле int foo, подтянутый наследованием из Base).
+
+Мы хотим для всех объектов таких классов применить какое-то действие, например проинициировать (опустим другие, более адекватные способы сделать конкретно это). inb4 — c++17, без концептов
+
+Давайте используем следующий пассаж:
+
+1. определим предикат поля и завернём его в функтор
+
+```cpp
+    template <typename T> 
+    using foo_present_t = decltype(std::declval<T&>().foo);
+
+    template <typename T>
+    static constexpr bool has_foo_t = std::experimental::is_detected_v<foo_present_t, T>;
+
+    template<typename T>
+    struct hasFooPredicate {
+    constexpr static auto value = has_foo_t<T>;
+    };
+```
+
+2. определим функтор нашего действия
+
+```cpp
+    class FooApplier {
+        void apply(Base* base) {
+            base->foo = 42;
+        }
+    };
+```
+3. определим вспомогательный класс который будет дёргать функтор и ехать по тюплу дальше
+
+```cpp
+    template<typename TypesTuple, typename Applier, template<typename> typename Predicate, int Id, typename IterableTypesTuple>
+    struct BulkApplier;
+```
+где:
+* `TypesTuple` — наш исходный тюпл
+* `IterableTypesTuple` — тюпл листа типов, по которым ходим через head/tail
+* `Predicate` — наш предикат
+* `Id` — указатель на объект в тюпле
+4. сформируем базу и индукцию этого класса
+* когда элементов нет — ничего не делаем
+```cpp
+    template<typename TypesTuple, typename Applier, template<typename> typename Predicate, int Id>
+    struct BulkApplier<TypesTuple, Applier, Predicate, Id, std::tuple<>> {
+        void apply(TypesTuple _) { }
+    };
+```
+* когда есть — проверим предикат и в случае успеха дёрнем действие; в любом случае едем дальше
+```cpp
+    template<typename TypesTuple, typename Applier, template<typename> typename Predicate, int Id, typename Head, typename ...Tail>
+    struct BulkApplier<TypesTuple, Applier, Condition, Id, std::tuple<Head, Tail...>> {
+    void apply(TypesTuple args) {
+        if constexpr(Predicate<std::tuple_element_t<Id, TypesTuple>>::value) {
+            Applier{}.apply(&std::get<Id>(nodes));
+        }
+
+        BulkApplier<TypesTuple, Applier, Predicate, Id + 1, std::tuple<Tail...>>{}.apply(nodes);
+        }
+    };
+```
+5. добавим вспомогательную функцию для этого всего беспредела
+```cpp
+    template<typename TypesTuple, typename Applier, template<typename> typename Predicate>
+    void bulkApply(TypesTuple ) {
+        ulkApplier<AllNodes, Applier, Condition, 0, AllNodes>{}.apply(allNodes);
+    }
+```
+Как этим всем добром пользоваться:
+```cpp
+    auto args = std::make_tuple(...);
+    bulkApply<decltype(args), FooApplier, hasFooPredicate>(args);
+```
+PS: Этот механизм отлично обобщается, но это уже другая история
+
+---
+
+Let's say we have a `std::tuple` containing objects of different classes, some of which share a certain static interface (let's say an `int foo` field, inherited from a `Base` class).
+
+We want to apply some action to all such objects, for example, initialize them (let's skip other more adequate ways to do this specifically). *inb4* — C++17, no concepts.
+
+Let's use the following approach:
+
+1. Define a field predicate and wrap it in a functor.
+
+```cpp
+    template <typename T> 
+    using foo_present_t = decltype(std::declval<T&>().foo);
+
+    template <typename T>
+    static constexpr bool has_foo_t = std::experimental::is_detected_v<foo_present_t, T>;
+
+    template<typename T>
+    struct hasFooPredicate {
+      constexpr static auto value = has_foo_t<T>;
+    };
+```
+
+2. Define our action functor.
+
+```cpp
+    class FooApplier {
+    public: 
+        void apply(Base* base) {
+            base->foo = 42;
+        }
+    };
+```
+
+3. Define a helper class that will call the functor and traverse the tuple.
+
+```cpp
+    template<typename TypesTuple, typename Applier, template<typename> typename Predicate, int Id, typename IterableTypesTuple>
+    struct BulkApplier;
+```
+Where:
+* `TypesTuple` — our original tuple
+* `IterableTypesTuple` — the type list tuple we iterate over using head/tail
+* `Predicate` — our predicate
+* `Id` — index of the current element in the tuple
+
+4. Implement the base and inductive cases for this class.
+* When there are no elements left — do nothing.
+```cpp
+    template<typename TypesTuple, typename Applier, template<typename> typename Predicate, int Id>
+    struct BulkApplier<TypesTuple, Applier, Predicate, Id, std::tuple<>> {
+        void apply(TypesTuple _) { }
+    };
+```
+* When elements exist — check the predicate and if successful, call the action; always proceed to the next element.
+```cpp
+    template<typename TypesTuple, typename Applier, template<typename> typename Predicate, int Id, typename Head, typename ...Tail>
+    struct BulkApplier<TypesTuple, Applier, Predicate, Id, std::tuple<Head, Tail...>> { 
+    void apply(TypesTuple nodes) { 
+        if constexpr(Predicate<std::tuple_element_t<Id, TypesTuple>>::value) {
+            Applier{}.apply(&std::get<Id>(nodes));
+        }
+
+        BulkApplier<TypesTuple, Applier, Predicate, Id + 1, std::tuple<Tail...>>{}.apply(nodes);
+        }
+    };
+```
+
+5. Add a helper function for this entire mechanism.
+
+```cpp
+    template<typename TypesTuple, typename Applier, template<typename> typename Predicate>
+    void bulkApply(TypesTuple allNodes) { 
+        BulkApplier<TypesTuple, Applier, Predicate, 0, TypesTuple>{}.apply(allNodes); 
+    }
+```
+
+How to use this machinery:
+
+```cpp
+    auto args = std::make_tuple(...);
+    bulkApply<decltype(args), FooApplier, hasFooPredicate>(args);
+```
+
+PS: This mechanism generalizes perfectly, but that's another story.
+

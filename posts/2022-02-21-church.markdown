@@ -1,0 +1,118 @@
+---
+title: Church's numbers
+tags: cpp, crazy
+---
+
+По просьбам подписчиков — небольшой этюд по числам Чёрча (https://en.wikipedia.org/wiki/Church_encoding)
+tl:dr — выражаем натуральные+ числа через типы, причём всё, что мы можем с ними делать — применять с некоторым символом (функцией).
+
+То есть такое число — это глубина композиции некой функции. Пример без композиции для простоты.
+Собственно применение такой композиции с тз лямбда исчислений это b-редукция, и это всё что мы можем над этим типом делать. (опуская другие виды редукций)
+
+```cpp
+    #include <iostream>
+    using namespace std;
+     
+     
+    struct Zero { };
+     
+    template<typename Church>
+    struct Succ { };
+     
+     
+    template<typename Church, typename Fn>
+    struct BReduction;
+     
+    template<typename Fn>
+    struct BReduction<Zero, Fn> {
+      void apply(Fn _) { }
+    };
+     
+    template<typename Church, typename Fn>
+    struct BReduction<Succ<Church>, Fn> {
+      void apply(Fn fn) {
+        fn();
+        BReduction<Church, Fn>{}.apply(fn);
+      }
+    };
+     
+    template<typename Church, typename Fn>
+    inline void apply(Fn fn) {
+      BReduction<Church, Fn>{}.apply(fn);
+    }
+     
+     
+     
+    int main() {
+     
+    	using ZeroNum = Zero;
+    	using OneNum = Succ<Zero>;
+    	using BigNum = Succ<Succ<Succ<Zero>>>;
+     
+    	auto action = []() {  std::cout << "fn" << std::endl; };
+    	apply<BigNum>(action);
+     
+     
+    	return 0;
+    }
+```
+
+https://ideone.com/G4X0Kh
+
+---
+
+At the request of subscribers — a short study on Church numerals (https://en.wikipedia.org/wiki/Church_encoding)  
+TL;DR: We express natural numbers (including zero) through types, where the only thing we can do with them is apply them to a certain symbol (function).  
+
+That is, such a number is the depth of composition of a certain function. Here is an example without composition for simplicity.  
+The application of such composition in terms of lambda calculus is beta-reduction, and that's all we can do with this type (omitting other types of reductions).  
+
+```cpp
+    #include <iostream>
+    using namespace std;
+     
+     
+    struct Zero { };
+     
+    template<typename Church>
+    struct Succ { };
+     
+     
+    template<typename Church, typename Fn>
+    struct BReduction;
+     
+    template<typename Fn>
+    struct BReduction<Zero, Fn> {
+      void apply(Fn _) { }
+    };
+     
+    template<typename Church, typename Fn>
+    struct BReduction<Succ<Church>, Fn> {
+      void apply(Fn fn) {
+        fn();
+        BReduction<Church, Fn>{}.apply(fn);
+      }
+    };
+     
+    template<typename Church, typename Fn>
+    inline void apply(Fn fn) {
+      BReduction<Church, Fn>{}.apply(fn);
+    }
+     
+     
+     
+    int main() {
+     
+    	using ZeroNum = Zero;
+    	using OneNum = Succ<Zero>;
+    	using BigNum = Succ<Succ<Succ<Zero>>>;
+     
+    	auto action = []() {  std::cout << "fn" << std::endl; };
+    	apply<BigNum>(action);
+     
+     
+    	return 0;
+    }
+```
+
+https://ideone.com/G4X0Kh

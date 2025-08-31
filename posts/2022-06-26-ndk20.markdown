@@ -1,0 +1,18 @@
+---
+title: NDK + C++20
+tags: cpp, android
+---
+
+Как-то очень тихо это случилось
+Как минимум на ndkVersion "24.0.8215888" теперь есть c++20!
+upd:
+* в каком-то состоянии есть концепты
+* в стандартную библиотеку не завезли `ranges`, но завезли `coroutines`
+
+---
+
+It happened quite quietly.  
+At least in ndkVersion "24.0.8215888", C++20 is now available!  
+Update:  
+* Concepts are partially implemented  
+* The standard library doesn’t include `ranges`, but `coroutines` are shipped

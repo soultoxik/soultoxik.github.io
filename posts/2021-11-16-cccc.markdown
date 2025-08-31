@@ -1,0 +1,16 @@
+---
+title: cccc snippet 
+tags: cpp
+---
+
+Сниппет для `сссс` — проехаться по всему проекту
+```bash
+find . -name "*.h" -o -name "*.cpp" -o -name "*.cc" | xargs -t cccc
+```
+
+---
+
+Snippet for `cccc` — process the entire project:  
+```bash  
+find . -name "*.h" -o -name "*.cpp" -o -name "*.cc" | xargs -t cccc  
+```  
