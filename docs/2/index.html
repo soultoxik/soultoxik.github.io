@@ -116,6 +116,24 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="../posts/2024-04-27-grpc-web.html">
+        grpc + grpc-web
+      </a>
+    </h1>
+    <span class="post-date">April 27, 2024,
+      
+    </span>
+
+    <p>У <code>grpc-web</code> (https://github.com/grpc/grpc-web) есть ограничение по коннекту: <code>gRPC-web clients connect to gRPC services via a special proxy; by default, gRPC-web uses Envoy.</code> Из интересного – есть <a href="https://docs.rs/tonic-web/latest/tonic_web/"><code>tonic</code> + <code>tonic-web</code></a> который через <code>tower</code> может давать серверный <code>grpc</code>, к которому могут коннектится как обычные, так и <code>grpc-web</code> клиенты. Пользуйтесь!</p>
+<hr />
+<p>The <code>grpc-web</code> library (https://github.com/grpc/grpc-web) has a connection limitation:<br />
+<code>gRPC-web clients connect to gRPC services via a special proxy; by default, gRPC-web uses Envoy.</code></p>
+<p>Interestingly, there is <a href="https://docs.rs/tonic-web/latest/tonic_web/"><code>tonic</code> + <code>tonic-web</code></a>, which via <code>tower</code> can provide a server-side <code>gRPC</code> implementation accessible by both regular and <code>grpc-web</code> clients.<br />
+Give it a try!</p>
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="../posts/2022-07-20-carbon.html">
         Carbon
       </a>
@@ -150,19 +168,6 @@ At least in ndkVersion “24.0.8215888”, C++20 is now available!<br />
 Update:<br />
 * Concepts are partially implemented<br />
 * The standard library doesn’t include <code>ranges</code>, but <code>coroutines</code> are shipped</p>
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="../posts/2022-04-12-lambda.html">
-        Little lambda machine
-      </a>
-    </h1>
-    <span class="post-date">April 12, 2022,
-      
-    </span>
-
-    <p>Absolutely perfect https://justine.lol/lambda/</p>
   </div>
   
 </div>

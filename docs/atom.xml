@@ -8,8 +8,66 @@
         <name>Heuna Kim</name>
         <email>ai@heuna-kim.net</email>
     </author>
-    <updated>2025-04-26T00:00:00Z</updated>
+    <updated>2025-08-31T00:00:00Z</updated>
     <entry>
+    <title>Go functional (as it can) utils</title>
+    <link href="https://github.com/hahey/lanyon-hakyll/posts/2025-08-31-gofun.html" />
+    <id>https://github.com/hahey/lanyon-hakyll/posts/2025-08-31-gofun.html</id>
+    <published>2025-08-31T00:00:00Z</published>
+    <updated>2025-08-31T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>Практикуясь в го в какой-то момент очень захотелось вот такого.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode go"><code class="sourceCode go"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">func</span> Fmap[A any, B any, AB <span class="kw">func</span>(A) B](a []A, f AB) []B {</span>
+<span id="cb1-2"><a href="#cb1-2"></a>	b := <span class="bu">make</span>([]B, <span class="dv">0</span>, <span class="bu">len</span>(a))</span>
+<span id="cb1-3"><a href="#cb1-3"></a>	<span class="kw">for</span> _, e := <span class="kw">range</span> a {</span>
+<span id="cb1-4"><a href="#cb1-4"></a>		b = <span class="bu">append</span>(b, f(e))</span>
+<span id="cb1-5"><a href="#cb1-5"></a>	}</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a>	<span class="kw">return</span> b</span>
+<span id="cb1-8"><a href="#cb1-8"></a>}</span>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="kw">func</span> FmapInto[A any, B any, AB <span class="kw">func</span>(A) B](a []A, f AB, b []B) []B {</span>
+<span id="cb1-11"><a href="#cb1-11"></a>	<span class="kw">for</span> i, e := <span class="kw">range</span> a {</span>
+<span id="cb1-12"><a href="#cb1-12"></a>		b[i] = f(e)</span>
+<span id="cb1-13"><a href="#cb1-13"></a>	}</span>
+<span id="cb1-14"><a href="#cb1-14"></a></span>
+<span id="cb1-15"><a href="#cb1-15"></a>	<span class="kw">return</span> b</span>
+<span id="cb1-16"><a href="#cb1-16"></a>}</span>
+<span id="cb1-17"><a href="#cb1-17"></a></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="kw">func</span> ForAll[A any, F <span class="kw">func</span>(A)](a []A, f F) {</span>
+<span id="cb1-19"><a href="#cb1-19"></a>	<span class="kw">for</span> _, e := <span class="kw">range</span> a {</span>
+<span id="cb1-20"><a href="#cb1-20"></a>		f(e)</span>
+<span id="cb1-21"><a href="#cb1-21"></a>	}</span>
+<span id="cb1-22"><a href="#cb1-22"></a>}</span></code></pre></div>
+<p>Это реализует распространенные операции функционального программирования, такие как <code>map</code> и <code>forEach</code>, с использованием дженериков в Go, что позволяет выполнять типобезопасные преобразования и итерации над слайсами. Вариант <code>FmapInto</code> особенно полезен для предварительно выделенных слайсов, чтобы избежать дополнительных аллокаций памяти</p>
+<hr />
+<div class="sourceCode" id="cb2"><pre class="sourceCode go"><code class="sourceCode go"><span id="cb2-1"><a href="#cb2-1"></a>While practicing Go, at some point I really wanted something like this:</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">go</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="kw">func</span> Fmap[A any, B any, AB <span class="kw">func</span>(A) B](a []A, f AB) []B {</span>
+<span id="cb2-5"><a href="#cb2-5"></a>	b := <span class="bu">make</span>([]B, <span class="dv">0</span>, <span class="bu">len</span>(a))</span>
+<span id="cb2-6"><a href="#cb2-6"></a>	<span class="kw">for</span> _, e := <span class="kw">range</span> a {</span>
+<span id="cb2-7"><a href="#cb2-7"></a>		b = <span class="bu">append</span>(b, f(e))</span>
+<span id="cb2-8"><a href="#cb2-8"></a>	}</span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a>	<span class="kw">return</span> b</span>
+<span id="cb2-11"><a href="#cb2-11"></a>}</span>
+<span id="cb2-12"><a href="#cb2-12"></a></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="kw">func</span> FmapInto[A any, B any, AB <span class="kw">func</span>(A) B](a []A, f AB, b []B) []B {</span>
+<span id="cb2-14"><a href="#cb2-14"></a>	<span class="kw">for</span> i, e := <span class="kw">range</span> a {</span>
+<span id="cb2-15"><a href="#cb2-15"></a>		b[i] = f(e)</span>
+<span id="cb2-16"><a href="#cb2-16"></a>	}</span>
+<span id="cb2-17"><a href="#cb2-17"></a></span>
+<span id="cb2-18"><a href="#cb2-18"></a>	<span class="kw">return</span> b</span>
+<span id="cb2-19"><a href="#cb2-19"></a>}</span>
+<span id="cb2-20"><a href="#cb2-20"></a></span>
+<span id="cb2-21"><a href="#cb2-21"></a><span class="kw">func</span> ForAll[A any, F <span class="kw">func</span>(A)](a []A, f F) {</span>
+<span id="cb2-22"><a href="#cb2-22"></a>	<span class="kw">for</span> _, e := <span class="kw">range</span> a {</span>
+<span id="cb2-23"><a href="#cb2-23"></a>		f(e)</span>
+<span id="cb2-24"><a href="#cb2-24"></a>	}</span>
+<span id="cb2-25"><a href="#cb2-25"></a>}</span></code></pre></div>
+<p>This implements common functional programming operations like <code>map</code> and <code>forEach</code> using Go’s generics, allowing for type-safe transformations and iterations over slices. The <code>FmapInto</code> variant is particularly useful for pre-allocated slices to avoid extra allocations.</p>]]></summary>
+</entry>
+<entry>
     <title>Quine Relay</title>
     <link href="https://github.com/hahey/lanyon-hakyll/posts/2025-04-26-relay.html" />
     <id>https://github.com/hahey/lanyon-hakyll/posts/2025-04-26-relay.html</id>
@@ -209,38 +267,6 @@ OpenGL 2.0 + libc, and the latter is only available in edge builds. Not great.</
 <p>TL;DR: A library for organizing multiple computations in C++ at compile-time.<br />
 You can watch a talk on this topic at https://yatalks.yandex.ru/, Mobile section, “1000 and 1 Operations”.</p>
 <p>Also, I’ll be speaking on the same topic tomorrow at https://devscamp.ru/ at 11:20 — come join! :)</p>]]></summary>
-</entry>
-<entry>
-    <title>Tuple</title>
-    <link href="https://github.com/hahey/lanyon-hakyll/posts/2021-11-19-tuple-indexed.html" />
-    <id>https://github.com/hahey/lanyon-hakyll/posts/2021-11-19-tuple-indexed.html</id>
-    <published>2021-11-19T00:00:00Z</published>
-    <updated>2021-11-19T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>Когда хочется проехаться по содержимому тюпла с индексом</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a>    <span class="kw">template</span>&lt;<span class="bu">std::</span>size_t I = <span class="dv">0</span>, <span class="kw">typename</span> ...Ts&gt;</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    <span class="kw">inline</span> <span class="kw">typename</span> <span class="bu">std::</span>enable_if&lt;I == <span class="kw">sizeof</span>...(Ts), <span class="dt">void</span>&gt;::type</span>
-<span id="cb1-3"><a href="#cb1-3"></a>    something(<span class="bu">std::</span>tuple&lt;Ts...&gt;) { }</span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a>    <span class="kw">template</span>&lt;<span class="bu">std::</span>size_t I = <span class="dv">0</span>, <span class="kw">typename</span> ...Ts&gt;</span>
-<span id="cb1-6"><a href="#cb1-6"></a>    <span class="kw">inline</span> <span class="kw">typename</span> <span class="bu">std::</span>enable_if&lt;I &lt; <span class="kw">sizeof</span>...(Ts), <span class="dt">void</span>&gt;::type</span>
-<span id="cb1-7"><a href="#cb1-7"></a>    something(<span class="bu">std::</span>tuple&lt;Ts...&gt; ts) {</span>
-<span id="cb1-8"><a href="#cb1-8"></a>        doSomething(<span class="bu">std::</span>get&lt;I&gt;(ts));</span>
-<span id="cb1-9"><a href="#cb1-9"></a>        something&lt;I + <span class="dv">1</span>&gt;(ts);</span>
-<span id="cb1-10"><a href="#cb1-10"></a>    }</span></code></pre></div>
-<p><a href="https://ideone.com/LVdMnx">https://ideone.com/LVdMnx</a></p>
-<hr />
-<p>When you need to iterate over the contents of a tuple with an index:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1"></a>    <span class="kw">template</span>&lt;<span class="bu">std::</span>size_t I = <span class="dv">0</span>, <span class="kw">typename</span> ...Ts&gt;</span>
-<span id="cb2-2"><a href="#cb2-2"></a>    <span class="kw">inline</span> <span class="kw">typename</span> <span class="bu">std::</span>enable_if&lt;I == <span class="kw">sizeof</span>...(Ts), <span class="dt">void</span>&gt;::type</span>
-<span id="cb2-3"><a href="#cb2-3"></a>    something(<span class="bu">std::</span>tuple&lt;Ts...&gt;) { }</span>
-<span id="cb2-4"><a href="#cb2-4"></a></span>
-<span id="cb2-5"><a href="#cb2-5"></a>    <span class="kw">template</span>&lt;<span class="bu">std::</span>size_t I = <span class="dv">0</span>, <span class="kw">typename</span> ...Ts&gt;</span>
-<span id="cb2-6"><a href="#cb2-6"></a>    <span class="kw">inline</span> <span class="kw">typename</span> <span class="bu">std::</span>enable_if&lt;I &lt; <span class="kw">sizeof</span>...(Ts), <span class="dt">void</span>&gt;::type</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    something(<span class="bu">std::</span>tuple&lt;Ts...&gt; ts) {</span>
-<span id="cb2-8"><a href="#cb2-8"></a>        doSomething(<span class="bu">std::</span>get&lt;I&gt;(ts));</span>
-<span id="cb2-9"><a href="#cb2-9"></a>        something&lt;I + <span class="dv">1</span>&gt;(ts);</span>
-<span id="cb2-10"><a href="#cb2-10"></a>    }</span></code></pre></div>
-<p><a href="https://ideone.com/LVdMnx">https://ideone.com/LVdMnx</a></p>]]></summary>
 </entry>
 
 </feed>

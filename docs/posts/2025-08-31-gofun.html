@@ -11,19 +11,19 @@
 
   <title>
     
-      soultoxik-web &middot; 
+      Go functional (as it can) utils &middot; soultoxik-web
     
   </title>
 
   
       
-  <link rel="canonical" href="./index.html">
+  <link rel="canonical" href="../posts/2025-08-31-gofun.html">
       
   
 
-  <link rel="stylesheet" href="./css/poole.css">
-  <link rel="stylesheet" href="./css/syntax.css">
-  <link rel="stylesheet" href="./css/lanyon.css">
+  <link rel="stylesheet" href="../css/poole.css">
+  <link rel="stylesheet" href="../css/syntax.css">
+  <link rel="stylesheet" href="../css/lanyon.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
   <link rel="stylesheet" href="https://github.com/kika/fixedsys/releases/download/v3.02.9/FSEX302-alt.ttf">
   <!---
@@ -31,7 +31,7 @@
   <link rel="shortcut icon" href="{{ '/public/favicon.ico' | absolute_url }}">
   -->
 
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="./atom.xml">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../atom.xml">
 
   <!--- deactivate google analytics
   {% if site.google_analytics_id %}
@@ -61,21 +61,21 @@
   </div>
 
   <nav class="sidebar-nav">
-    <a class="sidebar-nav-item active" href>Home</a>
+    <a class="sidebar-nav-item" href>Home</a>
 
     <!--- The code below dynamically generates a sidebar nav of the files in the folder /pages -->
 
     
       
-        <a class="sidebar-nav-item" href="./pages/About.html">About</a>
+        <a class="sidebar-nav-item" href="../pages/About.html">About</a>
       
     
       
-        <a class="sidebar-nav-item" href="./pages/Contact.html">Contact</a>
+        <a class="sidebar-nav-item" href="../pages/Contact.html">Contact</a>
       
     
 
-    <a class="sidebar-nav-item" href="./archive.html">Archive</a>
+    <a class="sidebar-nav-item" href="../archive.html">Archive</a>
 
     <a class="sidebar-nav-item" href="https://github.com/soultoxik/soultoxik.github.io">GitHub project</a>
 
@@ -86,7 +86,7 @@
       &copy; 2025. All rights reserved.
     </p>
     <p>
-        <img src="./images/haskell-logo.png" class="logo" style="display: inline;" />
+        <img src="../images/haskell-logo.png" class="logo" style="display: inline;" />
         Site created with
         <a href="https://jaspervdj.be/hakyll">Hakyll</a>.
         <br>
@@ -112,19 +112,16 @@
       </div>
 
       <div class="container content">
-          <div class="posts">
-  
-  <div class="post">
+          <div class="post">
     <h1 class="post-title">
-      <a href="./posts/2025-08-31-gofun.html">
+      <a href="../posts/2025-08-31-gofun.html">
         Go functional (as it can) utils
       </a>
     </h1>
     <span class="post-date">August 31, 2025,
       
     </span>
-
-    <p>Практикуясь в го в какой-то момент очень захотелось вот такого.</p>
+     <p>Практикуясь в го в какой-то момент очень захотелось вот такого.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode go"><code class="sourceCode go"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">func</span> Fmap[A any, B any, AB <span class="kw">func</span>(A) B](a []A, f AB) []B {</span>
 <span id="cb1-2"><a href="#cb1-2"></a>	b := <span class="bu">make</span>([]B, <span class="dv">0</span>, <span class="bu">len</span>(a))</span>
 <span id="cb1-3"><a href="#cb1-3"></a>	<span class="kw">for</span> _, e := <span class="kw">range</span> a {</span>
@@ -175,55 +172,50 @@
 <span id="cb2-24"><a href="#cb2-24"></a>	}</span>
 <span id="cb2-25"><a href="#cb2-25"></a>}</span></code></pre></div>
 <p>This implements common functional programming operations like <code>map</code> and <code>forEach</code> using Go’s generics, allowing for type-safe transformations and iterations over slices. The <code>FmapInto</code> variant is particularly useful for pre-allocated slices to avoid extra allocations.</p>
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="./posts/2025-04-26-relay.html">
-        Quine Relay
-      </a>
-    </h1>
-    <span class="post-date">April 26, 2025,
-      
-    </span>
-
-    <p><a href="https://github.com/mame/quine-relay">https://github.com/mame/quine-relay</a></p>
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="./posts/2024-12-22-akka.html">
-        Akka
-      </a>
-    </h1>
-    <span class="post-date">December 22, 2024,
-      
-    </span>
-
-    <p>Один из авторов концепции ООП, Алан Кей, предлагал подход “есть объекты, внутри все синхронно, общаются через сообщения”. Эволюция пошла по несколько другому пути, что привело к локальному буму ООП языков (жава, кресты и иже с ним). Но изначальная концепция как-то забылась, и воскресла в виде акторной модели. Один из амбассадоров энтерпрайз акторов – <code>akka</code> (фреймворк для жавы/скалы). Недавно пошел собирать пет на акке, и внезапно <a href="https://doc.akka.io/libraries/akka-core/current/general/configuration.html#:~:text=License%20key,-Akka%20requires%20a&amp;text=Free%20keys%20can%20be%20obtained,a%20key%20isn't%20configured">оказалось…</a>. Тлдр: нужно получить ключ, иначе акторный контекст в какой-то момент помрет сам по себе (и соответственно все развалится). Невероятные технологии 21го века, спасибо маркетологам от lightbend.</p>
-<hr />
-<p>One of the founders of the OOP concept, Alan Kay, proposed an approach: “there are objects, everything inside is synchronous, and they communicate via messages.” Evolution took a slightly different path, leading to a local boom in OOP languages (Java, C++, and the like). But the original concept was somewhat forgotten and later revived in the form of the actor model.</p>
-<p>One of the enterprise ambassadors of actors is <code>Akka</code> (a framework for Java/Scala). Recently, I tried to set up a pet project with Akka and <a href="https://doc.akka.io/libraries/akka-core/current/general/configuration.html#:~:text=License%20key,-Akka%20requires%20a&amp;text=Free%20keys%20can%20be%20obtained,a%20key%20isn't%20configured">suddenly discovered…</a>.</p>
-<p>TL;DR: You need to obtain a license key, otherwise the actor context will eventually shut down on its own (and everything will break). Incredible technologies of the 21st century, thanks to the marketers at Lightbend.</p>
-  </div>
-  
 </div>
 
-<div class="pagination">
-  
-    <span class="pagination-item newer">Newer</span>
-  
-  
-    <a class="pagination-item older" href="./2/index.html">Older</a>
-  
+
+<div class="related">
+  <h2>Related posts</h2>
+  <ul class="related-posts">
+      
+      <li>
+        <h3>
+          <a href="../posts/2025-04-26-relay.html">
+            Quine Relay
+            <small>April 26, 2025</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="../posts/2024-12-22-akka.html">
+            Akka
+            <small>December 22, 2024</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="../posts/2024-04-27-grpc-web.html">
+            grpc + grpc-web
+            <small>April 27, 2024</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
 </div>
+
 
       </div>
     </div>
 
     <label for="sidebar-checkbox" class="sidebar-toggle"></label>
 
-    <script src="./public/js/script.js"></script>
+    <script src="../public/js/script.js"></script>
 
   </body>
 
