@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <!---
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  -->
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Church's numbers &middot; soultoxik-web
+    
+  </title>
+
+  
+      
+  <link rel="canonical" href="http://localhost:8000/posts/2022-02-21-church.html">
+      
+  
+
+  <link rel="stylesheet" href="http://localhost:8000/css/poole.css">
+  <link rel="stylesheet" href="http://localhost:8000/css/syntax.css">
+  <link rel="stylesheet" href="http://localhost:8000/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+  <link rel="stylesheet" href="https://github.com/kika/fixedsys/releases/download/v3.02.9/FSEX302-alt.ttf">
+  <!---
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ '/public/apple-touch-icon-precomposed.png' | absolute_url }}">
+  <link rel="shortcut icon" href="{{ '/public/favicon.ico' | absolute_url }}">
+  -->
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://localhost:8000/atom.xml">
+
+  <!--- deactivate google analytics
+  {% if site.google_analytics_id %}
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', '{{ site.google_analytics_id }}', 'auto');
+    ga('send', 'pageview');
+  </script>
+  {% endif %}
+  -->
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>soultoxik-web</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="http://localhost:8000">Home</a>
+
+    <!--- The code below dynamically generates a sidebar nav of the files in the folder /pages -->
+
+    
+      
+        <a class="sidebar-nav-item" href="http://localhost:8000/pages/About.html">About</a>
+      
+    
+      
+        <a class="sidebar-nav-item" href="http://localhost:8000/pages/Contact.html">Contact</a>
+      
+    
+
+    <a class="sidebar-nav-item" href="http://localhost:8000/archive.html">Archive</a>
+
+    <a class="sidebar-nav-item" href="https://github.com/soultoxik/soultoxik.github.io">GitHub project</a>
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2025. All rights reserved.
+    </p>
+    <p>
+        <img src="http://localhost:8000/images/haskell-logo.png" class="logo" style="display: inline;" />
+        Site created with
+        <a href="https://jaspervdj.be/hakyll">Hakyll</a>.
+        <br>
+        Modified theme
+        <a href="https://github.com/hahey/lanyon-hakyll">lanyon-hakyll</a>
+        based on
+        <a href="https://lanyon.getpoole.com/">Lanyon</a>.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="http://localhost:8000" title="Home">soultoxik-web</a>
+            <small></small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+          <div class="post">
+    <h1 class="post-title">
+      <a href="../posts/2022-02-21-church.html">
+        Church's numbers
+      </a>
+    </h1>
+    <span class="post-date">February 21, 2022,
+      
+    </span>
+     <p>По просьбам подписчиков — небольшой этюд по числам Чёрча (https://en.wikipedia.org/wiki/Church_encoding) tl:dr — выражаем натуральные+ числа через типы, причём всё, что мы можем с ними делать — применять с некоторым символом (функцией).</p>
+<p>То есть такое число — это глубина композиции некой функции. Пример без композиции для простоты. Собственно применение такой композиции с тз лямбда исчислений это b-редукция, и это всё что мы можем над этим типом делать. (опуская другие виды редукций)</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a>    <span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="kw">using</span> <span class="kw">namespace</span> std;</span>
+<span id="cb1-3"><a href="#cb1-3"></a>     </span>
+<span id="cb1-4"><a href="#cb1-4"></a>     </span>
+<span id="cb1-5"><a href="#cb1-5"></a>    <span class="kw">struct</span> Zero { };</span>
+<span id="cb1-6"><a href="#cb1-6"></a>     </span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="kw">template</span>&lt;<span class="kw">typename</span> Church&gt;</span>
+<span id="cb1-8"><a href="#cb1-8"></a>    <span class="kw">struct</span> Succ { };</span>
+<span id="cb1-9"><a href="#cb1-9"></a>     </span>
+<span id="cb1-10"><a href="#cb1-10"></a>     </span>
+<span id="cb1-11"><a href="#cb1-11"></a>    <span class="kw">template</span>&lt;<span class="kw">typename</span> Church, <span class="kw">typename</span> Fn&gt;</span>
+<span id="cb1-12"><a href="#cb1-12"></a>    <span class="kw">struct</span> BReduction;</span>
+<span id="cb1-13"><a href="#cb1-13"></a>     </span>
+<span id="cb1-14"><a href="#cb1-14"></a>    <span class="kw">template</span>&lt;<span class="kw">typename</span> Fn&gt;</span>
+<span id="cb1-15"><a href="#cb1-15"></a>    <span class="kw">struct</span> BReduction&lt;Zero, Fn&gt; {</span>
+<span id="cb1-16"><a href="#cb1-16"></a>      <span class="dt">void</span> apply(Fn _) { }</span>
+<span id="cb1-17"><a href="#cb1-17"></a>    };</span>
+<span id="cb1-18"><a href="#cb1-18"></a>     </span>
+<span id="cb1-19"><a href="#cb1-19"></a>    <span class="kw">template</span>&lt;<span class="kw">typename</span> Church, <span class="kw">typename</span> Fn&gt;</span>
+<span id="cb1-20"><a href="#cb1-20"></a>    <span class="kw">struct</span> BReduction&lt;Succ&lt;Church&gt;, Fn&gt; {</span>
+<span id="cb1-21"><a href="#cb1-21"></a>      <span class="dt">void</span> apply(Fn fn) {</span>
+<span id="cb1-22"><a href="#cb1-22"></a>        fn();</span>
+<span id="cb1-23"><a href="#cb1-23"></a>        BReduction&lt;Church, Fn&gt;{}.apply(fn);</span>
+<span id="cb1-24"><a href="#cb1-24"></a>      }</span>
+<span id="cb1-25"><a href="#cb1-25"></a>    };</span>
+<span id="cb1-26"><a href="#cb1-26"></a>     </span>
+<span id="cb1-27"><a href="#cb1-27"></a>    <span class="kw">template</span>&lt;<span class="kw">typename</span> Church, <span class="kw">typename</span> Fn&gt;</span>
+<span id="cb1-28"><a href="#cb1-28"></a>    <span class="kw">inline</span> <span class="dt">void</span> apply(Fn fn) {</span>
+<span id="cb1-29"><a href="#cb1-29"></a>      BReduction&lt;Church, Fn&gt;{}.apply(fn);</span>
+<span id="cb1-30"><a href="#cb1-30"></a>    }</span>
+<span id="cb1-31"><a href="#cb1-31"></a>     </span>
+<span id="cb1-32"><a href="#cb1-32"></a>     </span>
+<span id="cb1-33"><a href="#cb1-33"></a>     </span>
+<span id="cb1-34"><a href="#cb1-34"></a>    <span class="dt">int</span> main() {</span>
+<span id="cb1-35"><a href="#cb1-35"></a>     </span>
+<span id="cb1-36"><a href="#cb1-36"></a>    	<span class="kw">using</span> ZeroNum = Zero;</span>
+<span id="cb1-37"><a href="#cb1-37"></a>    	<span class="kw">using</span> OneNum = Succ&lt;Zero&gt;;</span>
+<span id="cb1-38"><a href="#cb1-38"></a>    	<span class="kw">using</span> BigNum = Succ&lt;Succ&lt;Succ&lt;Zero&gt;&gt;&gt;;</span>
+<span id="cb1-39"><a href="#cb1-39"></a>     </span>
+<span id="cb1-40"><a href="#cb1-40"></a>    	<span class="kw">auto</span> action = []() {  <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;fn&quot;</span> &lt;&lt; <span class="bu">std::</span>endl; };</span>
+<span id="cb1-41"><a href="#cb1-41"></a>    	apply&lt;BigNum&gt;(action);</span>
+<span id="cb1-42"><a href="#cb1-42"></a>     </span>
+<span id="cb1-43"><a href="#cb1-43"></a>     </span>
+<span id="cb1-44"><a href="#cb1-44"></a>    	<span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb1-45"><a href="#cb1-45"></a>    }</span></code></pre></div>
+<p>https://ideone.com/G4X0Kh</p>
+<hr />
+<p>At the request of subscribers — a short study on Church numerals (https://en.wikipedia.org/wiki/Church_encoding)<br />
+TL;DR: We express natural numbers (including zero) through types, where the only thing we can do with them is apply them to a certain symbol (function).</p>
+<p>That is, such a number is the depth of composition of a certain function. Here is an example without composition for simplicity.<br />
+The application of such composition in terms of lambda calculus is beta-reduction, and that’s all we can do with this type (omitting other types of reductions).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1"></a>    <span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="kw">using</span> <span class="kw">namespace</span> std;</span>
+<span id="cb2-3"><a href="#cb2-3"></a>     </span>
+<span id="cb2-4"><a href="#cb2-4"></a>     </span>
+<span id="cb2-5"><a href="#cb2-5"></a>    <span class="kw">struct</span> Zero { };</span>
+<span id="cb2-6"><a href="#cb2-6"></a>     </span>
+<span id="cb2-7"><a href="#cb2-7"></a>    <span class="kw">template</span>&lt;<span class="kw">typename</span> Church&gt;</span>
+<span id="cb2-8"><a href="#cb2-8"></a>    <span class="kw">struct</span> Succ { };</span>
+<span id="cb2-9"><a href="#cb2-9"></a>     </span>
+<span id="cb2-10"><a href="#cb2-10"></a>     </span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="kw">template</span>&lt;<span class="kw">typename</span> Church, <span class="kw">typename</span> Fn&gt;</span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="kw">struct</span> BReduction;</span>
+<span id="cb2-13"><a href="#cb2-13"></a>     </span>
+<span id="cb2-14"><a href="#cb2-14"></a>    <span class="kw">template</span>&lt;<span class="kw">typename</span> Fn&gt;</span>
+<span id="cb2-15"><a href="#cb2-15"></a>    <span class="kw">struct</span> BReduction&lt;Zero, Fn&gt; {</span>
+<span id="cb2-16"><a href="#cb2-16"></a>      <span class="dt">void</span> apply(Fn _) { }</span>
+<span id="cb2-17"><a href="#cb2-17"></a>    };</span>
+<span id="cb2-18"><a href="#cb2-18"></a>     </span>
+<span id="cb2-19"><a href="#cb2-19"></a>    <span class="kw">template</span>&lt;<span class="kw">typename</span> Church, <span class="kw">typename</span> Fn&gt;</span>
+<span id="cb2-20"><a href="#cb2-20"></a>    <span class="kw">struct</span> BReduction&lt;Succ&lt;Church&gt;, Fn&gt; {</span>
+<span id="cb2-21"><a href="#cb2-21"></a>      <span class="dt">void</span> apply(Fn fn) {</span>
+<span id="cb2-22"><a href="#cb2-22"></a>        fn();</span>
+<span id="cb2-23"><a href="#cb2-23"></a>        BReduction&lt;Church, Fn&gt;{}.apply(fn);</span>
+<span id="cb2-24"><a href="#cb2-24"></a>      }</span>
+<span id="cb2-25"><a href="#cb2-25"></a>    };</span>
+<span id="cb2-26"><a href="#cb2-26"></a>     </span>
+<span id="cb2-27"><a href="#cb2-27"></a>    <span class="kw">template</span>&lt;<span class="kw">typename</span> Church, <span class="kw">typename</span> Fn&gt;</span>
+<span id="cb2-28"><a href="#cb2-28"></a>    <span class="kw">inline</span> <span class="dt">void</span> apply(Fn fn) {</span>
+<span id="cb2-29"><a href="#cb2-29"></a>      BReduction&lt;Church, Fn&gt;{}.apply(fn);</span>
+<span id="cb2-30"><a href="#cb2-30"></a>    }</span>
+<span id="cb2-31"><a href="#cb2-31"></a>     </span>
+<span id="cb2-32"><a href="#cb2-32"></a>     </span>
+<span id="cb2-33"><a href="#cb2-33"></a>     </span>
+<span id="cb2-34"><a href="#cb2-34"></a>    <span class="dt">int</span> main() {</span>
+<span id="cb2-35"><a href="#cb2-35"></a>     </span>
+<span id="cb2-36"><a href="#cb2-36"></a>    	<span class="kw">using</span> ZeroNum = Zero;</span>
+<span id="cb2-37"><a href="#cb2-37"></a>    	<span class="kw">using</span> OneNum = Succ&lt;Zero&gt;;</span>
+<span id="cb2-38"><a href="#cb2-38"></a>    	<span class="kw">using</span> BigNum = Succ&lt;Succ&lt;Succ&lt;Zero&gt;&gt;&gt;;</span>
+<span id="cb2-39"><a href="#cb2-39"></a>     </span>
+<span id="cb2-40"><a href="#cb2-40"></a>    	<span class="kw">auto</span> action = []() {  <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;fn&quot;</span> &lt;&lt; <span class="bu">std::</span>endl; };</span>
+<span id="cb2-41"><a href="#cb2-41"></a>    	apply&lt;BigNum&gt;(action);</span>
+<span id="cb2-42"><a href="#cb2-42"></a>     </span>
+<span id="cb2-43"><a href="#cb2-43"></a>     </span>
+<span id="cb2-44"><a href="#cb2-44"></a>    	<span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb2-45"><a href="#cb2-45"></a>    }</span></code></pre></div>
+<p>https://ideone.com/G4X0Kh</p>
+</div>
+
+
+<div class="related">
+  <h2>Related posts</h2>
+  <ul class="related-posts">
+      
+      <li>
+        <h3>
+          <a href="../posts/2022-07-20-carbon.html">
+            Carbon
+            <small>July 20, 2022</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="../posts/2021-12-11-stampede.html">
+            stampede
+            <small>December 11, 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="../posts/2021-11-19-tuple-indexed.html">
+            Tuple
+            <small>November 19, 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script src="http://localhost:8000/public/js/script.js"></script>
+
+  </body>
+
+</html>
